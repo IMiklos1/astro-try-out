@@ -9,7 +9,7 @@ export interface ActionButton extends Action {
     theme?: 'primary' | 'secondary' | 'accent' | 'neutral';
 }
 
-export interface ActionLink extends Action {}
+export interface ActionLink extends Action { }
 
 export interface BackgroundImage {
     image?: CustomImage;
@@ -52,6 +52,13 @@ export interface CustomImage {
     dimensions?: { height: number; width: number };
 }
 
+export interface ContactFormSection extends Section {
+    heading?: string;
+    body?: string;
+    services?: string[];
+    submitLabel?: string;
+}
+
 export interface CtaSection extends Section {
     heading?: string;
     body?: string;
@@ -85,7 +92,7 @@ export interface Page {
     _id: string;
     slug: Slug;
     title: string;
-    sections: Array<CardsSection | CtaSection | HeroSection | LogosSection | TestimonialsSection>;
+    sections: Array<CardsSection | ContactFormSection | CtaSection | HeroSection | LogosSection | ServiceAreaSection | ServicesSection | TestimonialsSection>;
     metaTitle?: string;
     addTitleSuffix?: boolean;
     metaDescription?: string;
@@ -105,6 +112,35 @@ export interface Section {
     theme?: 'light' | 'dark';
     backgroundImage?: BackgroundImage;
     width?: 'full' | 'inset';
+}
+
+export interface Service {
+    _id: string;
+    title: string;
+    slug: Slug;
+    shortDescription?: string;
+    mainImage?: CustomImage;
+    body?: any[];
+}
+
+export interface ServiceAreaSection extends Section {
+    heading?: string;
+    body?: string;
+    subheading?: string;
+    description?: string;
+    cities?: string[];
+    ctaText?: string;
+    phoneNumber?: string;
+    phoneLink?: string;
+    mapEmbedUrl?: string;
+    mapTitle?: string;
+}
+
+export interface ServicesSection extends Section {
+    heading?: string;
+    body?: string;
+    services?: Service[];
+    columns?: 'one' | 'two' | 'three';
 }
 
 export interface SiteConfig {

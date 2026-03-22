@@ -1,0 +1,35 @@
+---
+import { type Service } from 'types';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
+
+interface Props {
+    service: Service;
+    class?: string;
+}
+
+const { service, class: className } = Astro.props;
+const href = `/szolgaltatasok/${service.slug?.current}`;
+---
+
+<a href={href} class:list={['card card-border w-full max-w-2xl hover:shadow-lg transition-shadow', className]}>
+    {
+        service.mainImage?.src && (
+            <figure>
+                <ResponsiveImage
+                    _id={service.mainImage._id}
+                    src={service.mainImage.src}
+                    width={service.mainImage.dimensions?.width}
+                    height={service.mainImage.dimensions?.height}
+                    alt={service.mainImage.alt}
+                />
+            </figure>
+        )
+    }
+    <div class="card-body gap-4">
+        {service.title && <h3 class="font-black card-title sm:text-2xl">{service.title}</h3>}
+        {service.shortDescription && <p>{service.shortDescription}</p>}
+        <div class="card-actions">
+            <span class="font-bold text-blue-600">Részletek &rarr;</span>
+        </div>
+    </div>
+</a>

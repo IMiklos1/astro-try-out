@@ -25,6 +25,21 @@ export const SECTIONS = `{
   _type == "logosSection" => {
     items[] ${IMAGE}
   },
+  _type == "servicesSection" => {
+    services[]-> {
+      _id,
+      _type,
+      title,
+      slug,
+      shortDescription,
+      "mainImage": {
+        "_id": mainImage.asset->_id,
+        "src": mainImage.asset->url,
+        "dimensions": mainImage.asset->metadata.dimensions,
+        "alt": mainImage.alt
+      }
+    }
+  },
   _type == "testimonialsSection" => {
     items[] {
         ...,

@@ -4,6 +4,7 @@ import backgroundImage from './backgroundImage'
 import badge from './badge'
 import card from './card'
 import cardsSection from './cardsSection'
+import contactFormSection from './contactFormSection'
 import company from './company'
 import ctaSection from './ctaSection'
 import customImage from './customImage'
@@ -13,6 +14,9 @@ import heroSection from './heroSection'
 import logosSection from './logosSection'
 import page from './page'
 import person from './person'
+import service from './service'
+import serviceAreaSection from './serviceAreaSection'
+import servicesSection from './servicesSection'
 import siteConfig from './siteConfig'
 import testimonial from './testimonial'
 import testimonialsSection from './testimonialsSection'
@@ -24,6 +28,7 @@ export const schemaTypes = [
   badge,
   card,
   cardsSection,
+  contactFormSection,
   company,
   ctaSection,
   customImage,
@@ -36,4 +41,8 @@ export const schemaTypes = [
   siteConfig,
   testimonial,
   testimonialsSection,
+  // self-defined document types
+  service,
+  serviceAreaSection,
+  servicesSection,
 ]

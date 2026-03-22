@@ -1,0 +1,34 @@
+---
+import { marked } from 'marked';
+import { type ServicesSection, type Service } from 'types';
+import ServiceCard from '@components/ServiceCard.astro';
+import Section from '@components/Section.astro';
+import { fetchAllServices } from '@data/service';
+
+interface Props extends ServicesSection {}
+
+const { heading, body, services: selectedServices, columns, ...rest } = Astro.props;
+
+// If specific services were selected in Sanity, use those; otherwise fetch all
+let items: Service[] = selectedServices && selectedServices.length > 0 ? selectedServices : await fetchAllServices();
+---
+
+<Section {...rest} class="text-center">
+    {heading && <h2 class="text-2xl font-black sm:text-4xl text-balance">{heading}</h2>}
+    {body && <div class:list={['mx-auto', heading && 'mt-4', 'max-w-prose markdown']} set:html={marked.parse(body)} />}
+    {
+        items && items.length > 0 && (
+            <div
+                class:list={[
+                    (heading || body) && 'mt-8',
+                    'grid gap-8 justify-items-center',
+                    columns === 'one' ? undefined : columns === 'two' ? 'md:grid-cols-2' : 'md:grid-cols-3'
+                ]}
+            >
+                {items.map((service) => (
+                    <ServiceCard service={service} class="flex-1" />
+                ))}
+            </div>
+        )
+    }
+</Section>

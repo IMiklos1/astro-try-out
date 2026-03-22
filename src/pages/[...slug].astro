@@ -6,7 +6,10 @@ import Cta from '@components/Cta.astro';
 import Hero from '@components/Hero.astro';
 import Logos from '@components/Logos.astro';
 import Testimonials from '@components/Testimonials.astro';
+import Services from '@components/Services.astro';
+import ServiceArea from '@components/ServiceArea.astro';
 import { fetchData, getPageById } from '@data/page';
+import ContactForm from '@components/ContactForm.astro';
 
 export async function getStaticPaths() {
     const data = await fetchData();
@@ -27,9 +30,12 @@ const { title, sections, metaTitle, metaDescription, socialImage } = page || {};
 
 const componentMap = {
     cardsSection: Cards,
+    contactFormSection: ContactForm,
     ctaSection: Cta,
     heroSection: Hero,
     logosSection: Logos,
+    serviceAreaSection: ServiceArea,
+    servicesSection: Services,
     testimonialsSection: Testimonials
 };
 ---

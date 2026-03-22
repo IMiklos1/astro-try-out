@@ -1,0 +1,47 @@
+---
+import type { Service } from 'types';
+import Layout from '@layouts/Layout.astro';
+import ResponsiveImage from '@components/ResponsiveImage.astro';
+import { toHTML } from '@portabletext/to-html';
+import { fetchAllServices, getServiceBySlug } from '@data/service';
+
+export async function getStaticPaths() {
+    const services = await fetchAllServices();
+    return services.map((service: Service) => ({
+        params: { slug: service.slug.current },
+        props: { slug: service.slug.current }
+    }));
+}
+
+const { slug } = Astro.props;
+const service: Service | null = await getServiceBySlug(slug);
+
+if (!service) {
+    return Astro.redirect('/404');
+}
+
+const bodyHtml = service.body ? toHTML(service.body) : '';
+---
+
+<Layout title={service.title}>
+    <article class="relative w-full px-3 py-16 sm:px-6 sm:py-24" data-theme="light">
+        <div class="relative mx-auto max-w-3xl">
+            {
+                service.mainImage?.src && (
+                    <figure class="mb-8 rounded-xl overflow-hidden">
+                        <ResponsiveImage
+                            _id={service.mainImage._id}
+                            src={service.mainImage.src}
+                            width={service.mainImage.dimensions?.width}
+                            height={service.mainImage.dimensions?.height}
+                            alt={service.mainImage.alt}
+                        />
+                    </figure>
+                )
+            }
+            <h1 class="text-3xl font-black sm:text-5xl text-balance mb-4">{service.title}</h1>
+            {service.shortDescription && <p class="text-lg text-gray-600 mb-8">{service.shortDescription}</p>}
+            {bodyHtml && <div class="prose max-w-none markdown" set:html={bodyHtml} />}
+        </div>
+    </article>
+</Layout>

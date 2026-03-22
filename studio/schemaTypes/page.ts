@@ -1,5 +1,5 @@
-import {defineField, defineType} from 'sanity'
-import {ComposeIcon} from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
+import { ComposeIcon } from '@sanity/icons'
 
 export default defineType({
   name: 'page',
@@ -44,11 +44,14 @@ export default defineType({
       description: 'The list containing the sections of a page',
       type: 'array',
       of: [
-        {type: 'cardsSection'},
-        {type: 'ctaSection'},
-        {type: 'heroSection'},
-        {type: 'logosSection'},
-        {type: 'testimonialsSection'},
+        { type: 'cardsSection' },
+        { type: 'contactFormSection' },
+        { type: 'ctaSection' },
+        { type: 'heroSection' },
+        { type: 'logosSection' },
+        { type: 'serviceAreaSection' },
+        { type: 'servicesSection' },
+        { type: 'testimonialsSection' },
       ],
       group: 'content',
     }),
@@ -92,7 +95,7 @@ export default defineType({
       title: 'title',
       subtitle: 'slug.current',
     },
-    prepare({title, subtitle}) {
+    prepare({ title, subtitle }) {
       return {
         title: title,
         subtitle: subtitle ? subtitle : '',
