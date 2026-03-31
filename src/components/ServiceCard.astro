@@ -14,13 +14,14 @@ const href = `/szolgaltatasok/${service.slug?.current}`;
 <a href={href} class:list={['card card-border w-full max-w-2xl hover:shadow-lg transition-shadow', className]}>
     {
         service.mainImage?.src && (
-            <figure>
+            <figure class="w-full max-h-40 sm:max-h-60 flex items-center justify-center overflow-hidden">
                 <ResponsiveImage
                     _id={service.mainImage._id}
                     src={service.mainImage.src}
                     width={service.mainImage.dimensions?.width}
                     height={service.mainImage.dimensions?.height}
                     alt={service.mainImage.alt}
+                    class="object-contain w-full h-auto"
                 />
             </figure>
         )
