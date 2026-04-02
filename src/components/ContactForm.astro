@@ -15,7 +15,6 @@ const { heading, body, services, submitLabel = 'Ajánlatkérés küldése', ...r
             {body && <div class="mb-8 text-center max-w-prose mx-auto markdown text-gray-600" set:html={marked.parse(body)} />}
 
             <form method="POST" class="space-y-5" netlify-honeypot="botcheck" data-netlify="true">
-                <input type="hidden" name="access_key" value="A_TE_KULCSOD_JON_IDE" />
                 <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
 
                 <div>
